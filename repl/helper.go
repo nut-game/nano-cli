@@ -80,10 +80,10 @@ func readServerMessages(callback func(data []byte)) {
 }
 
 func configure(c *ishell.Shell) {
-	historyPath := os.Getenv("PITAYACLI_HISTORY_PATH")
+	historyPath := os.Getenv("NANO_CLI_HISTORY_PATH")
 	if historyPath == "" {
 		home, _ := homedir.Dir()
-		historyPath = fmt.Sprintf("%s/.pitayacli_history", home)
+		historyPath = fmt.Sprintf("%s/.nano_cli_history", home)
 	}
 
 	c.SetHistoryPath(historyPath)

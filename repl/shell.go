@@ -28,7 +28,7 @@ func repl() {
 	shell := ishell.New()
 	configure(shell)
 
-	shell.Println("Pitaya REPL Client")
+	shell.Println("Nano REPL Client")
 
 	registerConnect(shell)
 	registerDisconnect(shell)
@@ -45,7 +45,7 @@ func repl() {
 func registerConnect(shell *ishell.Shell) {
 	shell.AddCmd(&ishell.Cmd{
 		Name: "connect",
-		Help: "connects to pitaya",
+		Help: "connects to nano",
 		Func: func(c *ishell.Context) {
 			var addr string
 			if len(c.Args) == 0 {
@@ -80,7 +80,7 @@ func registerPush(shell *ishell.Shell) {
 func registerRequest(shell *ishell.Shell) {
 	shell.AddCmd(&ishell.Cmd{
 		Name: "request",
-		Help: "makes a request to pitaya server",
+		Help: "makes a request to nano server",
 		Func: func(c *ishell.Context) {
 			err := request(c, c.RawArgs[1:])
 			if err != nil {
@@ -93,7 +93,7 @@ func registerRequest(shell *ishell.Shell) {
 func registerNotify(shell *ishell.Shell) {
 	shell.AddCmd(&ishell.Cmd{
 		Name: "notify",
-		Help: "makes a notify to pitaya server",
+		Help: "makes a notify to nano server",
 		Func: func(c *ishell.Context) {
 			err := notify(c, c.RawArgs[1:])
 			if err != nil {
@@ -106,7 +106,7 @@ func registerNotify(shell *ishell.Shell) {
 func registerDisconnect(shell *ishell.Shell) {
 	shell.AddCmd(&ishell.Cmd{
 		Name: "disconnect",
-		Help: "disconnects from pitaya server",
+		Help: "disconnects from nano server",
 		Func: func(c *ishell.Context) {
 			disconnect()
 		},
