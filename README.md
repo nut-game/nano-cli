@@ -49,7 +49,9 @@ Commands:
 ```
 
 ### Protobuf
+
 For connecting to a server that uses protobuf as serializer the server must implement two routes:
+
 - Docs: responsible for returning all handlers and the protos used on input and output;
 - Descriptors: The list of protos descriptions, this will be used by the CLI to encode/decode the messages.
 
