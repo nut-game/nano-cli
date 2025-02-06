@@ -29,12 +29,11 @@ import (
 	"github.com/abiosoft/ishell/v2"
 	"github.com/mitchellh/go-homedir"
 	"github.com/nut-game/nano/client"
-	"github.com/sirupsen/logrus"
 )
 
 func protoClient(log Log, addr string) error {
 	log.Println("Using protobuf client")
-	protoclient := client.NewProto(docsString, logrus.InfoLevel)
+	protoclient := client.NewProto(docsString)
 	pClient = protoclient
 
 	for k, v := range pushInfo {

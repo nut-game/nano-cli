@@ -26,7 +26,6 @@ import (
 	"strings"
 
 	"github.com/nut-game/nano/client"
-	"github.com/sirupsen/logrus"
 )
 
 func connect(logger Log, addr string, onMessageCallback func([]byte)) (err error) {
@@ -39,7 +38,7 @@ func connect(logger Log, addr string, onMessageCallback func([]byte)) (err error
 		err = protoClient(logger, addr)
 	default:
 		logger.Println("Using json client")
-		pClient = client.New(logrus.InfoLevel)
+		pClient = client.New()
 	}
 	pClient.SetClientHandshakeData(handshake)
 
