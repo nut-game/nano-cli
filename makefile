@@ -1,9 +1,7 @@
-echo:
-	@echo "Run: make run"
-
-
-run:
-	go run main.go
-
 build:
-	go build -o nano-cli .
+	@mkdir -p out
+	@go build -o ./out/nano-cli-darwin ./...
+
+build-linux:
+	@mkdir -p out
+	@GOOS=linux GOARCH=amd64 go build -o ./out/pitaya-cli-linux ./main.go

@@ -18,46 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-package repl
+package main
 
-import (
-	"sync"
-
-	"github.com/nut-game/nano/client"
-	"github.com/nut-game/nano/session"
-)
-
-var (
-	pClient        client.NanoClient
-	disconnectedCh chan bool
-	docsString     string
-	fileName       string
-	pushInfo       map[string]string
-	wait           sync.WaitGroup
-	prettyJSON     bool
-	handshake      *session.HandshakeData
-)
-
-func Start(docs, filename string, prettyJSON bool) {
-	docsString = docs
-	fileName = filename
-	prettyJSON = prettyJSON
-	handshake = &session.HandshakeData{
-		Sys: session.HandshakeClientData{
-			Platform:    "repl",
-			LibVersion:  "0.3.5-release",
-			BuildNumber: "20",
-			Version:     "1.0.0",
-		},
-		User: map[string]interface{}{
-			"client": "repl",
-		},
-	}
-
-	switch {
-	case fileName != "":
-		executeFromFile(fileName)
-	default:
-		repl()
-	}
+// Log has log methods
+type Log interface {
+	Print(...interface{})
+	Println(...interface{})
+	Printf(string, ...interface{})
 }

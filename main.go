@@ -1,27 +1,45 @@
 package main
 
 import (
-	"github.com/spf13/cobra"
+	"flag"
+	"sync"
+
+	"github.com/nut-game/nano/client"
+	"github.com/nut-game/nano/session"
 )
 
-var cfgFile string
-
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
-	Use:   "nano-cli",
-	Short: "Nano command line utilities",
-	Long:  `Nano command line utilities`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
-}
-
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
-	cobra.CheckErr(rootCmd.Execute())
-}
+var (
+	pClient        client.NanoClient
+	disconnectedCh chan bool
+	docsString     string
+	fileName       string
+	pushInfo       map[string]string
+	wait           sync.WaitGroup
+	prettyJSON     bool
+	handshake      *session.HandshakeData
+)
 
 func main() {
-	Execute()
+	flag.StringVar(&docsString, "docs", "", "documentation route")
+	flag.StringVar(&fileName, "filename", "", "file with commands")
+	flag.BoolVar(&prettyJSON, "pretty", false, "print pretty jsons")
+	flag.Parse()
+	handshake = &session.HandshakeData{
+		Sys: session.HandshakeClientData{
+			Platform:    "mac",
+			LibVersion:  "0.3.5-release",
+			BuildNumber: "20",
+			Version:     "1.0.0",
+		},
+		User: map[string]interface{}{
+			"age": 30,
+		},
+	}
+
+	switch {
+	case fileName != "":
+		executeFromFile(fileName)
+	default:
+		repl()
+	}
 }

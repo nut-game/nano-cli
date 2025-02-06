@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-package repl
+package main
 
 import (
 	"github.com/abiosoft/ishell/v2"
@@ -28,7 +28,7 @@ func repl() {
 	shell := ishell.New()
 	configure(shell)
 
-	shell.Println("Nano REPL Client")
+	shell.Println("nano REPL Client")
 
 	registerConnect(shell)
 	registerDisconnect(shell)
