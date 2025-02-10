@@ -56,7 +56,7 @@ func registerConnect(shell *ishell.Shell) {
 			}
 
 			if err := connect(c, addr, func(data []byte) {
-				c.Printf("sv->%s\n", string(data))
+				c.Printf("sv -> %s\n", string(data))
 			}); err != nil {
 				c.Err(err)
 			}
@@ -108,7 +108,7 @@ func registerDisconnect(shell *ishell.Shell) {
 		Name: "disconnect",
 		Help: "disconnects from nano server",
 		Func: func(c *ishell.Context) {
-			disconnect()
+			disconnect(c)
 		},
 	})
 }

@@ -27,7 +27,7 @@ func main() {
 	handshake = &session.HandshakeData{
 		Sys: session.HandshakeClientData{
 			Platform:    "mac",
-			LibVersion:  "0.3.5-release",
+			LibVersion:  "0.4.6",
 			BuildNumber: "20",
 			Version:     "1.0.0",
 		},

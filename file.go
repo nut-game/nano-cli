@@ -34,7 +34,7 @@ func executeFromFile(fileName string) {
 	var err error
 	defer func() {
 		if err != nil {
-			logger.Printf("error: %s", err.Error())
+			logger.Printf("error: %s\n", err.Error())
 		}
 	}()
 
@@ -65,7 +65,7 @@ func executeCommand(logger Log, command string) error {
 	switch parts[0] {
 	case "connect":
 		return connect(logger, parts[1], func(data []byte) {
-			log.Printf("sv-> %s\n", string(data))
+			log.Printf("sv -> %s\n", string(data))
 			wait.Done()
 		})
 
@@ -85,10 +85,12 @@ func executeCommand(logger Log, command string) error {
 
 	case "push":
 		return push(logger, parts[1:])
+
 	case "routes":
 		return routes(logger)
+
 	case "disconnect":
-		disconnect()
+		disconnect(logger)
 		return nil
 
 	default:

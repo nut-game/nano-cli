@@ -78,6 +78,8 @@ func setHandshake(logger Log, args []string) error {
 		case "buildNumber":
 			handshake.Sys.BuildNumber = args[1]
 		}
+
+		logger.Println("handshake updated!")
 		return nil
 	}
 
@@ -103,6 +105,7 @@ func push(logger Log, args []string) error {
 
 	pushInfo[route] = pushType
 
+	logger.Println("push sent!")
 	return nil
 }
 
@@ -130,7 +133,7 @@ func request(logger Log, args []string) error {
 	if err != nil {
 		return err
 	}
-
+	logger.Println("request sent!")
 	return nil
 }
 
@@ -156,15 +159,19 @@ func notify(logger Log, args []string) error {
 	if err := pClient.SendNotify(route, data); err != nil {
 		return err
 	}
-
+	logger.Println("notify sent!")
 	return nil
 }
 
-func disconnect() {
+func disconnect(logger Log) {
 	if pClient.ConnectedStatus() {
 		disconnectedCh <- true
 		pClient.Disconnect()
+
+		pClient = nil
 	}
+
+	logger.Println("disconnected!")
 }
 
 func routes(logger Log) error {
@@ -179,7 +186,7 @@ func routes(logger Log) error {
 	if protoClient, ok := pClient.(*client.ProtoClient); ok {
 		info := protoClient.ExportInformation()
 		if info != nil {
-			for k, _ := range info.Commands {
+			for k := range info.Commands {
 				logger.Println(k)
 			}
 		}
