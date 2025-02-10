@@ -1,7 +1,5 @@
 build:
-	@mkdir -p out
-	@go build -o ./out/nano-cli-darwin ./...
+	@go build -o ./nano-cli .
 
 build-linux:
-	@mkdir -p out
-	@GOOS=linux GOARCH=amd64 go build -o ./out/nano-cli-linux ./main.go
+	@GOOS=linux GOARCH=amd64 go build -o ./out/nano-cli-linux .
