@@ -29,6 +29,7 @@ func repl() {
 	configure(shell)
 
 	shell.Println("nano REPL Client")
+	shell.SetPrompt("\033[34m➜\033[0m ")
 
 	registerConnect(shell)
 	registerDisconnect(shell)
