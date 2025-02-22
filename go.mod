@@ -1,11 +1,11 @@
 module nano-cli
 
-go 1.23.5
+go 1.24
 
 require (
 	github.com/abiosoft/ishell/v2 v2.0.2
 	github.com/mitchellh/go-homedir v1.1.0
-	github.com/nut-game/nano v0.6.4
+	github.com/nut-game/nano v0.6.5
 )
 
 require (
