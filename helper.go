@@ -90,7 +90,7 @@ func configure(c *ishell.Shell) {
 
 func parseData(data []byte) []byte {
 	if prettyJSON {
-		var m interface{}
+		var m any
 		_ = json.Unmarshal(data, &m)
 		data, _ = json.MarshalIndent(m, "", "\t")
 	}

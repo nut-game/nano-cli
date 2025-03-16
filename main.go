@@ -31,7 +31,7 @@ func main() {
 			BuildNumber: "20",
 			Version:     "1.0.0",
 		},
-		User: map[string]interface{}{
+		User: map[string]any{
 			"age": 30,
 		},
 	}
